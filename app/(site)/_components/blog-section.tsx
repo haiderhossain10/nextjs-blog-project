@@ -1,7 +1,7 @@
 "use client";
 import BlogCard from "@/components/blog-card";
 import Pagination from "@/components/pagination";
-import axios from "axios";
+import axios from "@/lib/axios";
 
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -9,9 +9,8 @@ import { useRouter } from "next/navigation";
 // fetch data from api
 const getData = async (page: number) => {
     try {
-        const res = await axios.get(
-            `http://localhost:3000/api/blog?page=${page}`
-        );
+        const res = await axios.get(`/blog?page=${page}`);
+
         return res.data;
     } catch (error) {
         console.log(error);
@@ -39,9 +38,10 @@ export default async function BlogSection() {
             <div className="container">
                 <div className="lg:w-6/12 mx-auto">
                     <div>
-                        {data?.map((item: any) => (
-                            <BlogCard key={item.id} data={item} />
-                        ))}
+                        {data &&
+                            data?.map((item: any) => (
+                                <BlogCard key={item.id} data={item} />
+                            ))}
                         <Pagination
                             page={page!}
                             pageCount={pageCount}
