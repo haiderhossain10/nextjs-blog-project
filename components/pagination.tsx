@@ -1,32 +1,43 @@
 "use client";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import ReactPaginate from "react-paginate";
+import Link from "next/link";
+import { Button } from "./ui/button";
+import { useRouter, useSearchParams } from "next/navigation";
+import { cn } from "@/lib/utils";
 
-interface Props {
-    pageCount: number;
-    handlePageClick: (event: any) => void;
-    page: number | string;
-}
+export default function Pagination({ pageCount }: { pageCount: number }) {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const page = searchParams.get("page");
 
-export default function Pagination({
-    pageCount,
-    handlePageClick,
-    page,
-}: Props) {
+    const currentPage = Number(page) || 1;
+
     return (
-        <ReactPaginate
-            className="flex items-center gap-3 mt-10"
-            breakLabel="..."
-            nextLabel={<ArrowRight size={16} />}
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={5}
-            pageCount={pageCount}
-            previousLabel={<ArrowLeft size={16} />}
-            forcePage={page ? Number(page) - 1 : 0}
-            previousLinkClassName="bg-stone-900 h-8 w-8 flex items-center justify-center text-white"
-            nextLinkClassName="bg-stone-900 h-8 w-8 flex items-center justify-center text-white"
-            activeLinkClassName="text-blue-600"
-            disabledLinkClassName="bg-stone-400"
-        />
+        <div className="flex flex-wrap items-center gap-4">
+            <Button
+                disabled={currentPage <= 1}
+                onClick={() => router.push(`?page=${currentPage - 1}`)}
+            >
+                Prev
+            </Button>
+
+            {new Array(pageCount).fill(pageCount).map((_, i) => (
+                <Link
+                    className={cn(
+                        currentPage === i + 1 && "text-blue-600 underline"
+                    )}
+                    key={i}
+                    href={`?page=${i + 1}`}
+                >
+                    {i + 1}
+                </Link>
+            ))}
+
+            <Button
+                disabled={currentPage >= pageCount}
+                onClick={() => router.push(`?page=${currentPage + 1}`)}
+            >
+                Next
+            </Button>
+        </div>
     );
 }

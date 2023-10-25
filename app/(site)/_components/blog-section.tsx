@@ -28,11 +28,6 @@ export default async function BlogSection() {
     // total pages count
     const pageCount = Math.ceil(count / 2);
 
-    // paginations
-    const handlePageClick = (event: any) => {
-        router.push(`?page=${event.selected + 1}`);
-    };
-
     return (
         <div className="py-6">
             <div className="container">
@@ -42,11 +37,9 @@ export default async function BlogSection() {
                             data?.map((item: any) => (
                                 <BlogCard key={item.id} data={item} />
                             ))}
-                        <Pagination
-                            page={page!}
-                            pageCount={pageCount}
-                            handlePageClick={handlePageClick}
-                        />
+                        <div className="mt-6">
+                            <Pagination pageCount={pageCount} />
+                        </div>
                     </div>
                 </div>
             </div>
