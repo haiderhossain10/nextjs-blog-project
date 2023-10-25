@@ -4,7 +4,7 @@ export default function Loading() {
     return (
         <div className="mt-6">
             <div className="container ">
-                <div className="w-6/12 mx-auto">
+                <div className="lg:w-6/12 mx-auto">
                     <div className="space-y-4">
                         <div className="flex items-center space-x-6">
                             <Skeleton className="h-12 w-12 rounded-full" />

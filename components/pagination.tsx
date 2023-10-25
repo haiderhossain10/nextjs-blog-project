@@ -15,7 +15,7 @@ export default function Pagination({ pageCount }: { pageCount: number }) {
         <div className="flex flex-wrap items-center gap-4">
             <Button
                 disabled={currentPage <= 1}
-                onClick={() => router.push(`?page=${currentPage - 1}`)}
+                onClick={() => router.push(`/?page=${currentPage - 1}`)}
             >
                 Prev
             </Button>
@@ -26,7 +26,7 @@ export default function Pagination({ pageCount }: { pageCount: number }) {
                         currentPage === i + 1 && "text-blue-600 underline"
                     )}
                     key={i}
-                    href={`?page=${i + 1}`}
+                    href={`/?page=${i + 1}`}
                 >
                     {i + 1}
                 </Link>
@@ -34,7 +34,7 @@ export default function Pagination({ pageCount }: { pageCount: number }) {
 
             <Button
                 disabled={currentPage >= pageCount}
-                onClick={() => router.push(`?page=${currentPage + 1}`)}
+                onClick={() => router.push(`/?page=${currentPage + 1}`)}
             >
                 Next
             </Button>
