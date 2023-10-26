@@ -1,3 +1,4 @@
+import Comment from "@/app/(blog)/_components/comment";
 import Content from "@/app/(blog)/_components/content";
 import prisma from "@/lib/db";
 import moment from "moment";
@@ -36,7 +37,7 @@ export default async function Slug({
                                 height={50}
                                 width={50}
                                 alt="profile"
-                                className="rounded-full"
+                                className="rounded-full "
                             />
                         </Link>
                         <div>
@@ -55,7 +56,7 @@ export default async function Slug({
                     </div>
                     <div className="pt-8">
                         <Image
-                            className="h-[250px] w-full object-cover mb-4"
+                            className="h-[250px] w-full object-cover mb-4 object-center"
                             src={single?.imageUrl}
                             height={600}
                             width={600}
@@ -63,6 +64,7 @@ export default async function Slug({
                         />
                         <Content content={single?.content} />
                     </div>
+                    <Comment data={single?.user} />
                 </div>
             </div>
         </div>

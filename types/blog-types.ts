@@ -1,8 +1,9 @@
 export interface InterfaceBlogsProps {
+    id: string;
+    userId: string;
     title: string;
     content: string;
     createdAt: string;
-    id: string;
     imageUrl: string;
     slug: string;
     updatedAt: string;
@@ -13,7 +14,6 @@ export interface InterfaceBlogsProps {
         emailVerified: string | null;
         image: string;
     };
-    userId: string;
 }
 
 export interface InterfaceBlogProps {
