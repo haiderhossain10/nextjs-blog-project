@@ -31,8 +31,6 @@ export default function BlogCard({ data }: Props) {
 
     const len = data.content.length;
 
-    console.log(data.content);
-
     return (
         <div className="border-b border-stone-300 pb-6 pt-6 first-of-type:pt-0">
             <div className="flex items-center gap-2">

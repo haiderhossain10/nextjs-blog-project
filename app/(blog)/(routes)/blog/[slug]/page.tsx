@@ -13,7 +13,7 @@ export default async function Slug({
     // get signle blog post
     const single = await prisma.blog.findFirst({
         where: {
-            slug,
+            slug: decodeURIComponent(slug),
         },
         include: {
             user: true,
