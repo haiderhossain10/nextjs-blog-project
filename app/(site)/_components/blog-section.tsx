@@ -1,11 +1,15 @@
 import BlogCard from "@/components/blog-card";
 import Pagination from "@/components/pagination";
 import axios from "@/lib/axios";
+import { InterfaceBlogProps } from "@/types/blog-types";
 
 // fetch data from api
 async function getData({ page }: { page: number }) {
     try {
-        return await axios.get(`/blog?page=${page}`);
+        const data: InterfaceBlogProps[] = await axios.get(
+            `/blog?page=${page}`
+        );
+        return data;
     } catch (error) {
         console.log(error);
     }

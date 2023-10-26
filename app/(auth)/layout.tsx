@@ -15,7 +15,7 @@ export default function AuthLayout({
     if (status === "loading") return null;
 
     if (status === "authenticated") {
-        return router.push("/");
+        return router.back();
     }
 
     return (

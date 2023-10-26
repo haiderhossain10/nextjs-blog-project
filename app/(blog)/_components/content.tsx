@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 export default function Content({ content }: { content: string }) {
-    const [isMounted, setIsMounted] = useState(false);
+    const [isMounted, setIsMounted] = useState<boolean>(false);
 
     useEffect(() => {
         setIsMounted(true);

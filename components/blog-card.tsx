@@ -3,24 +3,9 @@ import Image from "next/image";
 import moment from "moment";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { BlogType } from "@/types/blog-types";
 
-interface Props {
-    data: {
-        id: string;
-        title: string;
-        slug: string;
-        imageUrl: string;
-        content: string;
-        createdAt: string;
-        user: {
-            id: string;
-            name: string;
-            image: string;
-        };
-    };
-}
-
-export default function BlogCard({ data }: Props) {
+export default function BlogCard({ data }: BlogType) {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
