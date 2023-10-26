@@ -2,11 +2,11 @@
 import Image from "next/image";
 import moment from "moment";
 import Link from "next/link";
+import { InterfaceBlogsProps } from "@/types/blog-types";
 import { useEffect, useState } from "react";
-import { BlogType } from "@/types/blog-types";
 
-export default function BlogCard({ data }: BlogType) {
-    const [isMounted, setIsMounted] = useState(false);
+export default function BlogCard({ data }: { data: InterfaceBlogsProps }) {
+    const [isMounted, setIsMounted] = useState<boolean>(false);
 
     useEffect(() => {
         setIsMounted(true);

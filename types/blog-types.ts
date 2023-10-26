@@ -1,21 +1,22 @@
 export interface InterfaceBlogsProps {
-    data: {
+    title: string;
+    content: string;
+    createdAt: string;
+    id: string;
+    imageUrl: string;
+    slug: string;
+    updatedAt: string;
+    user: {
         id: string;
-        title: string;
-        slug: string;
-        imageUrl: string;
-        content: string;
-        createdAt: string;
-        user: {
-            id: string;
-            name: string;
-            image: string;
-        };
-    }[];
-    count: number;
+        name: string;
+        email: string;
+        emailVerified: string | null;
+        image: string;
+    };
+    userId: string;
 }
 
 export interface InterfaceBlogProps {
-    data: InterfaceBlogsProps["data"];
+    data: InterfaceBlogsProps;
     count: number;
 }
