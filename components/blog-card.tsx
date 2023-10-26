@@ -1,6 +1,8 @@
+"use client";
 import Image from "next/image";
 import moment from "moment";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface Props {
     data: {
@@ -19,7 +21,17 @@ interface Props {
 }
 
 export default function BlogCard({ data }: Props) {
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    if (!isMounted) return null;
+
     const len = data.content.length;
+
+    console.log(data.content);
 
     return (
         <div className="border-b border-stone-300 pb-6 pt-6 first-of-type:pt-0">
@@ -38,18 +50,19 @@ export default function BlogCard({ data }: Props) {
                     {moment(data.createdAt).format("MMM Do YY")}
                 </p>
             </div>
-
             <h2 className="text-xl font-bold py-3">
                 <Link className="underline" href={`/blog/${data.slug}`}>
                     {data.title}{" "}
                 </Link>
             </h2>
-
-            <p>
-                {len > 100
-                    ? data.content.substring(0, 100) + "..."
-                    : data.content}
-            </p>
+            <p
+                dangerouslySetInnerHTML={{
+                    __html:
+                        len > 100
+                            ? data?.content.substring(0, 250).trim() + "..."
+                            : data?.content.trim(),
+                }}
+            ></p>
         </div>
     );
 }

@@ -1,3 +1,4 @@
+import Content from "@/app/(blog)/_components/content";
 import prisma from "@/lib/db";
 import moment from "moment";
 import Image from "next/image";
@@ -53,7 +54,14 @@ export default async function Slug({
                         </div>
                     </div>
                     <div className="pt-8">
-                        <p>{single?.content}</p>
+                        <Image
+                            className="h-[250px] w-full object-cover mb-4"
+                            src={single?.imageUrl}
+                            height={600}
+                            width={600}
+                            alt="Thumbnail"
+                        />
+                        <Content content={single?.content} />
                     </div>
                 </div>
             </div>
