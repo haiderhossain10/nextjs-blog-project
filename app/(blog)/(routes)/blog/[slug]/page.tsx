@@ -56,7 +56,7 @@ export default async function Slug({
                     </div>
                     <div className="pt-8">
                         <Image
-                            className="h-[250px] w-full object-cover mb-4 object-center"
+                            className="min-h-full max-h-[350px] w-full object-cover mb-4 object-center"
                             src={single?.imageUrl}
                             height={600}
                             width={600}
@@ -64,7 +64,7 @@ export default async function Slug({
                         />
                         <Content content={single?.content} />
                     </div>
-                    <Comment data={single?.user} />
+                    <Comment data={single} />
                 </div>
             </div>
         </div>
