@@ -1,6 +1,8 @@
 import axios from "@/lib/axios";
 import moment from "moment";
 import Image from "next/image";
+import CommentReplay from "./comment-replay";
+import CommentReplayList from "./comment-replay-list";
 
 // get comments by blog id
 const getData = async (id: string) => {
@@ -17,7 +19,7 @@ export default async function CommentList({ id }: { id: string }) {
     return (
         <section className="space-y-4 mt-10 lg:ml-14">
             {data.map((comment: any) => (
-                <div key={comment.id} className="flex gap-3 items-center">
+                <div key={comment.id} className="flex gap-3">
                     <div>
                         <Image
                             height={50}
@@ -35,6 +37,8 @@ export default async function CommentList({ id }: { id: string }) {
                             </span>
                         </p>
                         <p className="text-sm">{comment.content} </p>
+                        <CommentReplay parentCommentId={comment.id} />
+                        <CommentReplayList parentCommentId={comment.id} />
                     </div>
                 </div>
             ))}
