@@ -5,7 +5,7 @@ export default function Footer() {
             <div className="container">
                 <div className="text-center">
                     <p className="text-sm font-normal">
-                        &copy; {currentYear} Your Haider. All rights reserved.
+                        &copy; {currentYear} Haider. All rights reserved.
                     </p>
                 </div>
             </div>
