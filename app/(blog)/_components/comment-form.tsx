@@ -16,6 +16,8 @@ import axios from "@/lib/axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { MessageSquare } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
     content: z.string().min(1, {
@@ -69,7 +71,7 @@ export default function CommentForm({
     }
 
     return (
-        <div className="flex gap-3">
+        <div className="flex gap-3 items-center">
             <div>
                 <Image
                     height={50}
@@ -90,7 +92,8 @@ export default function CommentForm({
                         render={({ field }) => (
                             <FormItem>
                                 <FormControl>
-                                    <Textarea
+                                    <Input
+                                        disabled={isLoading}
                                         {...field}
                                         placeholder="Type your message here."
                                     />
@@ -99,9 +102,6 @@ export default function CommentForm({
                             </FormItem>
                         )}
                     />
-                    <Button disabled={isLoading}>
-                        {isLoading ? "Please wait..." : "Comment"}
-                    </Button>
                 </form>
             </Form>
         </div>

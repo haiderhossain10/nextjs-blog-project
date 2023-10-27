@@ -4,18 +4,33 @@ import prisma from "@/lib/db";
 
 export default async function Comment({ data }: { data: any }) {
     // get total comments
-    const {
-        _count: { _all },
-    } = await prisma.comment.aggregate({
-        where: { blogId: data?.id },
-        _count: { _all: true },
+    // const blog = await prisma.comment.findMany({
+    //     where: { blogId: data?.id },
+    //     include: {
+    //         commentReplies: true,
+    //     },
+    // });
+    const totalComments = await prisma.comment.count({
+        where: {
+            blogId: data?.id,
+        },
+    });
+
+    const totalReplies = await prisma.commentReplay.count({
+        where: {
+            comment: {
+                blogId: data?.id,
+            },
+        },
     });
 
     const { user } = data;
 
     return (
         <section className="pt-8">
-            <h2 className="text-1xl font-bold pb-4">Comments ({_all})</h2>
+            <h2 className="text-1xl font-bold pb-4">
+                Comments ({totalComments + totalReplies})
+            </h2>
             <CommentForm image={user?.image} blogId={data?.id} />
             <CommentList id={data?.id} />
         </section>

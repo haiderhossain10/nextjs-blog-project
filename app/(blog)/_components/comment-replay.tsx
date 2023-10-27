@@ -28,6 +28,7 @@ export default function CommentReplay({
     parentCommentId: string;
 }) {
     const [isReplay, setIsReplay] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const { data, status }: any = useSession();
 
@@ -45,6 +46,7 @@ export default function CommentReplay({
     async function onSubmit(values: z.infer<typeof formSchema>) {
         if (status === "authenticated") {
             try {
+                setIsLoading(true);
                 const res = await axios.post("/comment/replay", {
                     ...values,
                     commentId: parentCommentId,
@@ -58,6 +60,8 @@ export default function CommentReplay({
                 }
             } catch (error) {
                 console.log(error);
+            } finally {
+                setIsLoading(false);
             }
         } else {
             return router.push("/auth");
@@ -69,16 +73,16 @@ export default function CommentReplay({
             <div className="pt-3">
                 <button
                     onClick={() => setIsReplay(!isReplay)}
-                    className="text-sm underline"
+                    className="text-sm flex gap-1 items-center"
                 >
-                    <Reply className="text-stone-600" size={18} />
+                    <Reply className="text-stone-600" size={18} /> Replay
                 </button>
             </div>
             {isReplay && (
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(onSubmit)}
-                        className="space-y-8"
+                        className="space-y-8 mt-3"
                     >
                         <FormField
                             control={form.control}
@@ -87,6 +91,7 @@ export default function CommentReplay({
                                 <FormItem>
                                     <FormControl>
                                         <Input
+                                            disabled={isLoading}
                                             placeholder="Replay..."
                                             {...field}
                                         />
