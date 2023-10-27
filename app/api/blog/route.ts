@@ -72,14 +72,16 @@ export async function GET(request: NextRequest) {
         const searchParams = request.nextUrl.searchParams;
         const page: any = searchParams.get("page") || 1;
 
-        const skip = (page - 1) * 2;
+        const LIMIT_PER_PAGE = 4;
+
+        const skip = (page - 1) * LIMIT_PER_PAGE;
 
         const blogs = await prisma.blog.findMany({
             include: {
                 user: true,
             },
             skip,
-            take: 2,
+            take: LIMIT_PER_PAGE,
             orderBy: {
                 createdAt: "desc",
             },

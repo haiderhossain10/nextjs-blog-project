@@ -34,7 +34,7 @@ export default async function CommentList({ id }: { id: string }) {
                                 {moment(comment.createdAt).fromNow()}
                             </span>
                         </p>
-                        <p className="text-xs">{comment.content} </p>
+                        <p className="text-sm">{comment.content} </p>
                     </div>
                 </div>
             ))}

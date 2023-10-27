@@ -21,7 +21,7 @@ export default async function BlogSection({ page }: { page: number }) {
     }: any = await getData({ page });
 
     // total pages count
-    const pageCount = Math.ceil(count / 2);
+    const pageCount = Math.ceil(count / 4);
 
     let content;
 

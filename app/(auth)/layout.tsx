@@ -20,7 +20,7 @@ export default function AuthLayout({
 
     return (
         <>
-            <section className="flex pt-10 pb-5 justify-center items-center">
+            <section className="flex py-10 justify-center h-full">
                 {children}
             </section>
         </>
