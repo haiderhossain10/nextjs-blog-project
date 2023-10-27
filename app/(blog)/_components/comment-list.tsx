@@ -15,7 +15,7 @@ export default async function CommentList({ id }: { id: string }) {
     const { data }: any = await getData(id);
 
     return (
-        <section className="space-y-4 mt-10 ml-14">
+        <section className="space-y-4 mt-10 lg:ml-14">
             {data.map((comment: any) => (
                 <div key={comment.id} className="flex gap-3 items-center">
                     <div>
