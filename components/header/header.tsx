@@ -14,8 +14,11 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { AlignJustify } from "lucide-react";
+import { useNavStore } from "@/hooks/stores/nav-toggle";
 
 export default function Header() {
+    const toggle = useNavStore((state: any) => state.toggle);
     const { data, status } = useSession();
 
     const path = usePathname();
@@ -28,7 +31,7 @@ export default function Header() {
                         <Link href="/">
                             <h2 className="text-2xl font-bold">Medium</h2>
                         </Link>
-                        <div className="flex items-center gap-6">
+                        <div className="lg:flex items-center gap-6 hidden">
                             <nav>
                                 <ul className="flex items-center gap-3">
                                     {navigations.map(
@@ -102,6 +105,9 @@ export default function Header() {
                                 </DropdownMenu>
                             )}
                         </div>
+                        <button onClick={() => toggle()} className="lg:hidden">
+                            <AlignJustify />
+                        </button>
                     </div>
                 </div>
             </header>

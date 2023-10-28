@@ -1,6 +1,7 @@
 "use client";
 import Footer from "@/components/footer/footer";
 import Header from "@/components/header/header";
+import NavSidebar from "@/components/sidebar/nav-sidebar";
 import { SessionProvider } from "next-auth/react";
 
 export default function Providers({
@@ -14,6 +15,7 @@ export default function Providers({
         <>
             <SessionProvider session={session}>
                 <Header />
+                <NavSidebar />
                 {children}
                 <Footer />
             </SessionProvider>
