@@ -14,6 +14,7 @@ export default function Pagination({ pageCount }: { pageCount: number }) {
     return (
         <div className="flex flex-wrap items-center gap-4">
             <Button
+                variant={"outline"}
                 disabled={currentPage <= 1}
                 onClick={() => router.push(`/?page=${currentPage - 1}`)}
             >
@@ -33,6 +34,7 @@ export default function Pagination({ pageCount }: { pageCount: number }) {
             ))}
 
             <Button
+                variant={"outline"}
                 disabled={currentPage >= pageCount}
                 onClick={() => router.push(`/?page=${currentPage + 1}`)}
             >
