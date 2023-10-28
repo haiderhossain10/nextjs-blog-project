@@ -14,7 +14,14 @@ export default function BlogCard({ data }: { data: InterfaceBlogsProps }) {
 
     if (!isMounted) return null;
 
-    const len = data.content.length;
+    const stripHtmlTags = (html: string) => {
+        const doc = new DOMParser().parseFromString(html, "text/html");
+        console.log(html);
+
+        return doc.body.textContent || "";
+    };
+    const len = stripHtmlTags(data.content).length;
+    const maxLen = 150;
 
     return (
         <div className="border-b border-stone-300 pb-6 pt-6 first-of-type:pt-0">
@@ -38,14 +45,13 @@ export default function BlogCard({ data }: { data: InterfaceBlogsProps }) {
                     {data.title}{" "}
                 </Link>
             </h2>
-            <p
-                dangerouslySetInnerHTML={{
-                    __html:
-                        len > 100
-                            ? data?.content.substring(0, 250).trim() + "..."
-                            : data?.content.trim(),
-                }}
-            ></p>
+
+            {len > maxLen
+                ? stripHtmlTags(data.content).substring(
+                      0,
+                      stripHtmlTags(data.content).indexOf(" ", maxLen)
+                  ) + " ..."
+                : stripHtmlTags(data.content)}
         </div>
     );
 }

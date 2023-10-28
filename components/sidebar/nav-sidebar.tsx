@@ -52,7 +52,11 @@ export default function NavSidebar() {
                     </ul>
                 </nav>{" "}
                 {status !== "authenticated" && status !== "loading" && (
-                    <Link onClick={() => toggle()} href="/auth">
+                    <Link
+                        className="mt-2 inline-block"
+                        onClick={() => toggle()}
+                        href="/auth"
+                    >
                         <Button>Register / Login</Button>
                     </Link>
                 )}

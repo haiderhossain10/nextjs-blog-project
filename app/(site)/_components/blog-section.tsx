@@ -44,6 +44,7 @@ export default async function BlogSection({ page }: { page: number }) {
         );
     }
 
+
     return (
         <div className="py-6 h-full">
             <div className="container">

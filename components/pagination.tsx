@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 export default function Pagination({ pageCount }: { pageCount: number }) {
     const router = useRouter();
@@ -11,6 +12,14 @@ export default function Pagination({ pageCount }: { pageCount: number }) {
 
     const currentPage = Number(page) || 1;
 
+    // generate pagination numbers
+    const paginate = [];
+    for (let number = currentPage - 3; number <= currentPage + 2; number++) {
+        if (number < 1) continue;
+        if (number > pageCount) break;
+        paginate.push(number);
+    }
+
     return (
         <div className="flex flex-wrap items-center gap-4">
             <Button
@@ -18,18 +27,20 @@ export default function Pagination({ pageCount }: { pageCount: number }) {
                 disabled={currentPage <= 1}
                 onClick={() => router.push(`/?page=${currentPage - 1}`)}
             >
-                Prev
+                <ArrowLeft size={18} />
             </Button>
 
-            {new Array(pageCount).fill(pageCount).map((_, i) => (
+            {paginate.map((page) => (
                 <Link
+                    key={page}
                     className={cn(
-                        currentPage === i + 1 && "text-blue-600 underline"
+                        currentPage === page
+                            ? "text-stone-700 font-bold"
+                            : "text-stone-400 hover:text-stone-700"
                     )}
-                    key={i}
-                    href={`/?page=${i + 1}`}
+                    href={`/?page=${page}`}
                 >
-                    {i + 1}
+                    {page}
                 </Link>
             ))}
 
@@ -38,7 +49,7 @@ export default function Pagination({ pageCount }: { pageCount: number }) {
                 disabled={currentPage >= pageCount}
                 onClick={() => router.push(`/?page=${currentPage + 1}`)}
             >
-                Next
+                <ArrowRight size={18} />
             </Button>
         </div>
     );
