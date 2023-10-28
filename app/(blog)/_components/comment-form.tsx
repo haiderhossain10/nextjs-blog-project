@@ -1,10 +1,8 @@
 "use client";
-import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
@@ -16,7 +14,6 @@ import axios from "@/lib/axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { MessageSquare } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({

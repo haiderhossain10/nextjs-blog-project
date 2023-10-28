@@ -4,12 +4,6 @@ import prisma from "@/lib/db";
 
 export default async function Comment({ data }: { data: any }) {
     // get total comments
-    // const blog = await prisma.comment.findMany({
-    //     where: { blogId: data?.id },
-    //     include: {
-    //         commentReplies: true,
-    //     },
-    // });
     const totalComments = await prisma.comment.count({
         where: {
             blogId: data?.id,

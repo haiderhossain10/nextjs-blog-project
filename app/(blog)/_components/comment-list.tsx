@@ -5,20 +5,22 @@ import CommentReplay from "./comment-replay";
 import CommentReplayList from "./comment-replay-list";
 
 // get comments by blog id
-const getData = async (id: string) => {
+const Comments = async (id: string) => {
     try {
-        return await axios.get(`/comment/${id}`);
+        const res: InterfaceCommentsProps[] = await axios.get(`/comment/${id}`);
+
+        return res;
     } catch (error) {
         console.log(error);
     }
 };
 
 export default async function CommentList({ id }: { id: string }) {
-    const { data }: any = await getData(id);
+    const { data: comments }: any = await Comments(id);
 
     return (
         <section className="space-y-4 mt-10 lg:ml-14">
-            {data.map((comment: any) => (
+            {comments.map((comment: any) => (
                 <div key={comment.id} className="flex gap-3">
                     <div>
                         <Image

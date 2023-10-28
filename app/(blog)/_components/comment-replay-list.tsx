@@ -2,7 +2,7 @@ import axios from "@/lib/axios";
 import moment from "moment";
 import Image from "next/image";
 
-const getData = async (id: string) => {
+const replayComments = async (id: string) => {
     try {
         return await axios.get(`/comment/replay/${id}`);
     } catch (error) {
@@ -15,11 +15,11 @@ export default async function CommentReplayList({
 }: {
     parentCommentId: string;
 }) {
-    const { data }: any = await getData(parentCommentId);
+    const { data: comments }: any = await replayComments(parentCommentId);
 
     return (
         <div className="pt-4 space-y-4">
-            {data.map((replay: any) => (
+            {comments.map((replay: any) => (
                 <div key={replay.id} className="flex gap-3">
                     <div>
                         <Image

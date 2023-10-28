@@ -4,7 +4,7 @@ import axios from "@/lib/axios";
 import { InterfaceBlogProps } from "@/types/blog-types";
 
 // fetch data from api
-async function getData({ page }: { page: number }) {
+async function posts({ page }: { page: number }) {
     try {
         const data: InterfaceBlogProps[] = await axios.get(
             `/blog?page=${page}`
@@ -18,7 +18,7 @@ async function getData({ page }: { page: number }) {
 export default async function BlogSection({ page }: { page: number }) {
     const {
         data: { data, count },
-    }: any = await getData({ page });
+    }: any = await posts({ page });
 
     // total pages count
     const pageCount = Math.ceil(count / 4);
