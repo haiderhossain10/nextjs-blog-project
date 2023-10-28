@@ -1,11 +1,6 @@
-import {
-    Sheet,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-} from "@/components/ui/sheet";
+"use client";
+
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 import navigations from "@/data/navigations";
 import { useNavStore } from "@/hooks/stores/nav-toggle";
 import { cn } from "@/lib/utils";
