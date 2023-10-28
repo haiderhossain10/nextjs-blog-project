@@ -78,32 +78,34 @@ export default function Create() {
                             onSubmit={form.handleSubmit(onSubmit)}
                             className="space-y-6"
                         >
-                            <FormField
-                                control={form.control}
-                                name="imageUrl"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Upload Image</FormLabel>
-                                        <FormControl>
-                                            <FileInput field={field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                control={form.control}
-                                name="title"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Title</FormLabel>
-                                        <FormControl>
-                                            <Input {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
+                            <div className="flex lg:flex-row flex-col gap-2">
+                                <FormField
+                                    control={form.control}
+                                    name="imageUrl"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Upload Image</FormLabel>
+                                            <FormControl>
+                                                <FileInput field={field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="title"
+                                    render={({ field }) => (
+                                        <FormItem className="flex-1">
+                                            <FormLabel>Title</FormLabel>
+                                            <FormControl>
+                                                <Input {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
                             <FormField
                                 control={form.control}
                                 name="content"

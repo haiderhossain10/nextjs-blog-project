@@ -6,6 +6,7 @@ import { CldImage, CldUploadButton } from "next-cloudinary";
 
 export default function FileInput({ field }: { field: any }) {
     const [imageId, setImageId] = useState<string | null>(null);
+
     return (
         <div>
             {imageId && (
@@ -26,7 +27,7 @@ export default function FileInput({ field }: { field: any }) {
                         field.onChange(e?.info?.url);
                     }}
                 >
-                    <Button type="button" variant={"destructive"}>
+                    <Button type="button" variant={"secondary"}>
                         <UploadCloud className="mr-2" />
                         Upload
                     </Button>

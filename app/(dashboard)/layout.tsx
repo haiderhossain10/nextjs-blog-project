@@ -10,9 +10,7 @@ export default function DashboardLayout({
     const { status } = useSession();
     const router = useRouter();
 
-    if (status === "loading") {
-        return <div>Checking...</div>;
-    }
+    if (status === "loading") return null;
 
     if (status === "unauthenticated") {
         return router.push("/");
