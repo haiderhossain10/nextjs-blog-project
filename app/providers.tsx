@@ -15,9 +15,9 @@ export default function Providers({
         <>
             <SessionProvider session={session}>
                 <Header />
-                <NavSidebar />
                 {children}
                 <Footer />
+                <NavSidebar />
             </SessionProvider>
         </>
     );

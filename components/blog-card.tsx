@@ -24,34 +24,45 @@ export default function BlogCard({ data }: { data: InterfaceBlogsProps }) {
     const maxLen = 150;
 
     return (
-        <div className="border-b border-stone-300 pb-6 pt-6 first-of-type:pt-0">
-            <div className="flex items-center gap-2">
-                <button>
-                    <Image
-                        src={data.user.image}
-                        height={24}
-                        width={24}
-                        alt="profile"
-                        className="rounded-full"
-                    />
-                </button>
-                <p className="text-[10px] font-medium">{data.user.name},</p>
-                <p className="text-[10px] font-medium text-stone-500">
-                    {moment(data.createdAt).format("MMM Do YY")}
-                </p>
-            </div>
-            <h2 className="text-xl font-bold py-3">
-                <Link className="underline" href={`/blog/${data.slug}`}>
-                    {data.title}{" "}
-                </Link>
-            </h2>
+        <div className="border-b border-stone-300 pb-6 pt-6 first-of-type:pt-0 grid grid-cols-1 lg:grid-cols-[1fr__200px] gap-4 items-center">
+            <div>
+                <div className="flex items-center gap-2">
+                    <button>
+                        <Image
+                            src={data.user.image}
+                            height={24}
+                            width={24}
+                            alt="profile"
+                            className="rounded-full"
+                        />
+                    </button>
+                    <p className="text-[10px] font-medium">{data.user.name},</p>
+                    <p className="text-[10px] font-medium text-stone-500">
+                        {moment(data.createdAt).format("MMM Do YY")}
+                    </p>
+                </div>
+                <h2 className="text-xl font-bold py-3">
+                    <Link className="underline" href={`/blog/${data.slug}`}>
+                        {data.title}{" "}
+                    </Link>
+                </h2>
 
-            {len > maxLen
-                ? stripHtmlTags(data.content).substring(
-                      0,
-                      stripHtmlTags(data.content).indexOf(" ", maxLen)
-                  ) + " ..."
-                : stripHtmlTags(data.content)}
+                {len > maxLen
+                    ? stripHtmlTags(data.content).substring(
+                          0,
+                          stripHtmlTags(data.content).indexOf(" ", maxLen)
+                      ) + " ..."
+                    : stripHtmlTags(data.content)}
+            </div>
+            <Link href={`/blog/${data.slug}`}>
+                <Image
+                    src={data.imageUrl}
+                    height={500}
+                    width={500}
+                    alt="thumbnail"
+                    className="h-[200px] lg:h-full md:w-[200px] lg:w-full object-cover rounded-md"
+                />
+            </Link>
         </div>
     );
 }

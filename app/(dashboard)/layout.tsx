@@ -18,7 +18,7 @@ export default function DashboardLayout({
 
     return (
         <>
-            <section className="h-full">{children}</section>
+            <section>{children}</section>
         </>
     );
 }

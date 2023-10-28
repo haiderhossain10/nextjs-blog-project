@@ -44,11 +44,10 @@ export default async function BlogSection({ page }: { page: number }) {
         );
     }
 
-
     return (
         <div className="py-6 h-full">
             <div className="container">
-                <div className="lg:w-6/12 mx-auto">{content}</div>
+                <div className="lg:w-6/12 md:w-8/12 mx-auto">{content}</div>
             </div>
         </div>
     );
